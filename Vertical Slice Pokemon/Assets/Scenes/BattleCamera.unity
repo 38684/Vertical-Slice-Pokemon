@@ -791,8 +791,8 @@ MonoBehaviour:
   baseHeight: 1
   tiltDownAngle: 15
   rotateSpeed: 20
-  idleRotateAmount: 10
-  idleRotateSpeed: 0.5
+  idleRotateAmount: 5
+  idleRotateSpeed: 1
   attackZoomDistance: 5
   attackHeight: 2
   attackTilt: 10
