@@ -31,6 +31,8 @@ public class BattleCameraController : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!enabled) return;
+
         if (playerMon == null || enemyMon == null) return;
 
         // 1. Follow midpoint between both Pokémon
