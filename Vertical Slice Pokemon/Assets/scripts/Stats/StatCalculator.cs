@@ -1,18 +1,16 @@
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-
 public static class StatCalculator
 {
-    public static Stats CalculateStats(BaseStats baseStats, int level)
+    public static BaseStats CalculateStats(BaseStats baseStats, int level)
     {
-        BaseStats b = new BaseStats();
+        BaseStats modifiedStats = new BaseStats();
 
-        b.baseHealth = baseStats.baseHealth * 2 + level * 5;
-        b.baseAttack = baseStats.baseAttack * 2 + level;
-        b.baseDefense = baseStats.baseDefense * 2 + level;
-        b.baseSpAttack = baseStats.baseSpAttack * 2 + level;
-        b.baseSpDefense = baseStats.baseSpDefense * 2 + level; 
-        b.baseSpeed = baseStats.baseSpeed * 2 + level;
+        modifiedStats.stats.health = (2 * baseStats.stats.health + baseStats.individualValues.health + (baseStats.effortValues.health / 4) * level) / 100 + level + 10;
+        modifiedStats.stats.attack = (2 * baseStats.stats.attack + baseStats.individualValues.attack + (baseStats.effortValues.attack / 4) * level) / 100 + 5;
+        modifiedStats.stats.defense = (2 * baseStats.stats.defense + baseStats.individualValues.defense + (baseStats.effortValues.defense / 4) * level) / 100 + 5;
+        modifiedStats.stats.specialAttack = (2 * baseStats.stats.specialAttack + baseStats.individualValues.specialAttack + (baseStats.effortValues.specialAttack / 4) * level) / 100 + 5;
+        modifiedStats.stats.specialDefense = (2 * baseStats.stats.specialDefense + baseStats.individualValues.specialDefense + (baseStats.effortValues.specialDefense / 4) * level) / 100 + 5;
+        modifiedStats.stats.speed = (2 * baseStats.stats.speed + baseStats.individualValues.speed + (baseStats.effortValues.speed / 4) * level) / 100 + 5;
 
-        return b;
+        return modifiedStats;
     }
 }
