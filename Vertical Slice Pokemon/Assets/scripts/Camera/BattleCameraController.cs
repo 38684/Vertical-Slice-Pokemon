@@ -73,5 +73,6 @@ public class BattleCameraController : MonoBehaviour
     void EndAttackCamera()
     {
         inAttackMode = false;
+
     }
 }
