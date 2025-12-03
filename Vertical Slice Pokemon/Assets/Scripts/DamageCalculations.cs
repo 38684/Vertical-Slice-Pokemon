@@ -1,7 +1,9 @@
 
 using UnityEngine;
+using static DataStructures;
+using Types = DataStructures.Types;
 
-public class DamageCalculations : MonoBehaviour
+public class DamageCalculations : ScriptableObject
 {
     public static int CalculateDamage(int level, int power, Stats stats, Types moveType, Types[] pokemonType)
     {

@@ -1,9 +1,9 @@
 
-using System;
 using UnityEngine;
+using static DataStructures;
 using Random = UnityEngine.Random;
+using Types = DataStructures.Types;
 
-[Serializable]
 public class BaseStats : MonoBehaviour
 {
     public Stats stats;
@@ -40,7 +40,8 @@ public class BaseStats : MonoBehaviour
             int random;
 
             if (max > 252)
-                random = Random.Range(0, 252);
+                random = Random.Range(0, 253);
+
             else
                 random = Random.Range(0, max);
 
@@ -71,42 +72,6 @@ public class BaseStats : MonoBehaviour
         }
         return array;
     }
-}
 
-public struct Stats
-{
-    public int health;
-    public int attack;
-    public int defense;
-    public int specialAttack;
-    public int specialDefense;
-    public int speed;
-}
-
-public struct IndividualValues
-{
-    public int health;
-    public int attack;
-    public int defense;
-    public int specialAttack;
-    public int specialDefense;
-    public int speed;
-}
-
-public struct EffortValues
-{
-    public int health;
-    public int attack;
-    public int defense;
-    public int specialAttack;
-    public int specialDefense;
-    public int speed;
-}
-
-public enum Types
-{
-    Electric,
-    Grass,
-    Poison,
-    Fairy
+    
 }
