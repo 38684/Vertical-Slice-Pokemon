@@ -1,8 +1,9 @@
+
 public static class StatCalculator
 {
-    public static BaseStats CalculateStats(BaseStats baseStats, int level)
+    public static PokemonData CalculateStats(PokemonData baseStats, int level)
     {
-        BaseStats modifiedStats = new BaseStats();
+        PokemonData modifiedStats = new PokemonData();
 
         modifiedStats.stats.health = (2 * baseStats.stats.health + baseStats.individualValues.health + (baseStats.effortValues.health / 4) * level) / 100 + level + 10;
         modifiedStats.stats.attack = (2 * baseStats.stats.attack + baseStats.individualValues.attack + (baseStats.effortValues.attack / 4) * level) / 100 + 5;

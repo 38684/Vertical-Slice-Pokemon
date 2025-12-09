@@ -195,6 +195,8 @@ GameObject:
   - component: {fileID: 661302253}
   - component: {fileID: 661302252}
   - component: {fileID: 661302251}
+  - component: {fileID: 661302256}
+  - component: {fileID: 661302255}
   m_Layer: 0
   m_Name: EnemyPokemon
   m_TagString: Untagged
@@ -296,6 +298,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &661302255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661302250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283ceaff001d4a94e8773b6eca607be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Moveset
+  moves:
+  - name: Sleep Powder
+    powerPoint: 15
+    power: 0
+    accuracy: 75
+    category: 2
+    type: 1
+  - name: Moonlight
+    powerPoint: 5
+    power: 0
+    accuracy: 100
+    category: 2
+    type: 3
+  - name: Strength Sap
+    powerPoint: 10
+    power: 0
+    accuracy: 100
+    category: 2
+    type: 1
+  - name: Giga Drain
+    powerPoint: 10
+    power: 75
+    accuracy: 100
+    category: 1
+    type: 1
+--- !u!114 &661302256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661302250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ebb7b156b43f8429be625d22e20a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BaseStats
+  name: Shiinotic
+  isFemale: 1
+  level: 36
+  stats:
+    health: 60
+    attack: 45
+    defense: 80
+    specialAttack: 90
+    specialDefense: 100
+    speed: 30
+  type: 0100000003000000
+  generateEffortValues: 0
 --- !u!1 &779861086
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +607,131 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1001 &1094427205
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: 0.010001177
+      objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: -0.0007821624
+      objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: -0.0066275666
+      objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 0.021558987
+      objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 0.0035268073
+      objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 0.02183241
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_Name
+      value: gordon_nonrig
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358490923489050667, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358490923489050667, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: -0.000000011175871
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358490923489050667, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: -0.003070158
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358490923489050667, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: -0.009697114
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358490923489050667, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 0.07599345
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358490923489050667, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 0.021321077
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358490923489050667, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 0.017132174
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
 --- !u!1 &1192602300
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +870,8 @@ GameObject:
   - component: {fileID: 1836872261}
   - component: {fileID: 1836872260}
   - component: {fileID: 1836872259}
-  - component: {fileID: 1836872258}
+  - component: {fileID: 1836872263}
+  - component: {fileID: 1836872262}
   m_Layer: 0
   m_Name: PlayerPokemon
   m_TagString: Untagged
@@ -690,29 +879,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &1836872258
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836872257}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1836872259
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -784,6 +950,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1836872262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836872257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283ceaff001d4a94e8773b6eca607be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Moveset
+  moves:
+  - name: Discharge
+    powerPoint: 15
+    power: 80
+    accuracy: 100
+    category: 1
+    type: 0
+  - name: Spark
+    powerPoint: 20
+    power: 65
+    accuracy: 100
+    category: 0
+    type: 0
+  - name: Toxic
+    powerPoint: 10
+    power: 0
+    accuracy: 90
+    category: 2
+    type: 2
+  - name: Venoshock
+    powerPoint: 10
+    power: 65
+    accuracy: 100
+    category: 1
+    type: 2
+--- !u!114 &1836872263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836872257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ebb7b156b43f8429be625d22e20a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BaseStats
+  name: Toxicitry
+  isFemale: 0
+  level: 37
+  stats:
+    health: 75
+    attack: 98
+    defense: 70
+    specialAttack: 114
+    specialDefense: 70
+    speed: 75
+  type: 0000000002000000
+  generateEffortValues: 1
 --- !u!1 &1895648082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,3 +1263,4 @@ SceneRoots:
   - {fileID: 661302254}
   - {fileID: 2085538240}
   - {fileID: 504151236}
+  - {fileID: 1094427205}

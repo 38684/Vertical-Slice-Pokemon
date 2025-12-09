@@ -36,12 +36,19 @@ public class DataStructures
     [Serializable]
     public struct Moves
     {
-        public int power;
+        public string name;
         public int powerPoint;
+        public int power;
         public int accuracy;
-        public bool isSpecial; // if not special then is physical
-        public bool healthDrain;
+        public moveCategory category;
         public Types type;
+    }
+
+    public enum moveCategory
+    {
+        Physical,
+        Special,
+        Status
     }
 
     public enum Types
