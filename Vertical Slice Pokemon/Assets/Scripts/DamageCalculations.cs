@@ -5,7 +5,7 @@ using Types = DataStructures.Types;
 
 public class DamageCalculations : ScriptableObject
 {
-    public static int CalculateDamage(int level, int power, Stats stats, Types moveType, Types[] pokemonType)
+    public static int CalculateDamage(PokemonData pokemonData, Moves move)
     {
         float critical = 1f;
         float type = 1;
@@ -13,24 +13,24 @@ public class DamageCalculations : ScriptableObject
         if (Random.Range(0, 24) == 0)
             critical = 1.5f;
 
-        if (moveType == Types.Poison)
+        if (move.type == Types.Poison)
         {
-            if (pokemonType[0] == Types.Grass)
+            if (pokemonData.type[0] == Types.Grass)
                 type *= 2;
 
-            if (pokemonType[1] == Types.Fairy)
+            if (pokemonData.type[1] == Types.Fairy)
                 type *= 2;
         }
 
-        if (moveType == Types.Electric)
+        if (move.type == Types.Electric)
         {
-            if (pokemonType[0] == Types.Grass)
+            if (pokemonData.type[0] == Types.Grass)
                 type /= 2;
         }
 
-        if (moveType == Types.Grass)
+        if (move.type == Types.Grass)
         {
-            if (pokemonType[0] == Types.Poison)
+            if (pokemonData.type[0] == Types.Poison)
                 type /= 2;
         }
 
@@ -42,7 +42,7 @@ public class DamageCalculations : ScriptableObject
                   \                     50                      /
          */
 
-        float baseDamage = ((2 * level / 5 + 2) * power * stats.attack / stats.defense / 50) + 2;
+        float baseDamage = ((2 * pokemonData.level / 5 + 2) * move.power * pokemonData.stats.attack / pokemonData.stats.defense / 50) + 2;
         float damage = Mathf.Floor(baseDamage * critical) * Random.Range(0.85f, 1f) * 1.5f * type;
 
         critical = 1f;

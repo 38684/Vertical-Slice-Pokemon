@@ -1,16 +1,16 @@
 
-using System;
-using System.Reflection;
 using UnityEngine;
 using static DataStructures;
+using static StatCalculator;
 using Random = UnityEngine.Random;
 using Types = DataStructures.Types;
 
 public class PokemonData : MonoBehaviour
 {
-    public string name;
+    public string pokemonName;
     public bool isFemale;
     public int level;
+    public int health;
     public Stats stats;
     public IndividualValues individualValues;
     public EffortValues effortValues;

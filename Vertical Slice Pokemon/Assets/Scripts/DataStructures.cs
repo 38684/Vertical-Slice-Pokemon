@@ -40,11 +40,11 @@ public class DataStructures
         public int powerPoint;
         public int power;
         public int accuracy;
-        public moveCategory category;
+        public MoveCatagory category;
         public Types type;
     }
 
-    public enum moveCategory
+    public enum MoveCatagory
     {
         Physical,
         Special,
@@ -57,5 +57,14 @@ public class DataStructures
         Grass,
         Poison,
         Fairy
+    }
+
+    public enum BattleState { 
+        Start, 
+        PlayerTurn, 
+        EnemyTurn, 
+        Won, 
+        Lost, 
+        Menu 
     }
 }

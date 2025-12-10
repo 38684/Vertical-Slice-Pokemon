@@ -1,5 +1,5 @@
 using UnityEngine;
-using static DataStructures;
+using Moves = DataStructures.Moves;
 
 public class Moveset : MonoBehaviour
 {
