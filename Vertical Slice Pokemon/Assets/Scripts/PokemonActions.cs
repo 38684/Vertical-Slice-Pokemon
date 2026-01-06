@@ -1,13 +1,12 @@
 using UnityEngine;
-using static StatCalculator;
 using static DamageCalculations;
 
 using TMPro;
 
 public class PokemonActions : PokemonData
 {
-    public PokemonData pokemonData = new PokemonData();
-    public PokemonData enemyData = new PokemonData();
+    public PokemonData pokemonData;
+    public PokemonData enemyData;
     public TMP_Text text;
     public static TurnOrder turnOrder;
     public Moveset moves;
@@ -16,7 +15,6 @@ public class PokemonActions : PokemonData
     private void Start()
     {
         text.text = text.name + ": " + enemyData.health;
-        pokemonData = CalculateStats(pokemonData);
     }
 
     public void UseMove(int moveNumber)

@@ -19,6 +19,9 @@ public class PokemonData : MonoBehaviour
 
     private void Start()
     {
+        stats = CalculateStats(stats, individualValues, effortValues, level);
+        health = stats.health;
+
         GenerateIVs();
 
         if (generateEffortValues)

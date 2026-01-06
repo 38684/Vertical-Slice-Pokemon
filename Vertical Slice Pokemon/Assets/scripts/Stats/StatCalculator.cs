@@ -1,17 +1,17 @@
+using static DataStructures;
 
 public static class StatCalculator
 {
-    public static PokemonData CalculateStats(PokemonData baseStats)
+    public static Stats CalculateStats(Stats stats, IndividualValues individualValues, EffortValues effortValues, int level)
     {
-        PokemonData modifiedStats = new PokemonData();
+        Stats modifiedStats = new Stats();
 
-        modifiedStats.stats.health = (2 * baseStats.stats.health + baseStats.individualValues.health + (baseStats.effortValues.health / 4) * baseStats.level) / 100 + baseStats.level + 10;
-        modifiedStats.stats.attack = (2 * baseStats.stats.attack + baseStats.individualValues.attack + (baseStats.effortValues.attack / 4) * baseStats.level) / 100 + 5;
-        modifiedStats.stats.defense = (2 * baseStats.stats.defense + baseStats.individualValues.defense + (baseStats.effortValues.defense / 4) * baseStats.level) / 100 + 5;
-        modifiedStats.stats.specialAttack = (2 * baseStats.stats.specialAttack + baseStats.individualValues.specialAttack + (baseStats.effortValues.specialAttack / 4) * baseStats.level) / 100 + 5;
-        modifiedStats.stats.specialDefense = (2 * baseStats.stats.specialDefense + baseStats.individualValues.specialDefense + (baseStats.effortValues.specialDefense / 4) * baseStats.level) / 100 + 5;
-        modifiedStats.stats.speed = (2 * baseStats.stats.speed + baseStats.individualValues.speed + (baseStats.effortValues.speed / 4) * baseStats.level) / 100 + 5;
-        modifiedStats.health = modifiedStats.stats.health;
+        modifiedStats.health = (2 * stats.health + individualValues.health + (effortValues.health / 4) * level) / 100 + level + 10;
+        modifiedStats.attack = (2 * stats.attack + individualValues.attack + (effortValues.attack / 4) * level) / 100 + 5;
+        modifiedStats.defense = (2 * stats.defense + individualValues.defense + (effortValues.defense / 4) * level) / 100 + 5;
+        modifiedStats.specialAttack = (2 * stats.specialAttack + individualValues.specialAttack + (effortValues.specialAttack / 4) * level) / 100 + 5;
+        modifiedStats.specialDefense = (2 * stats.specialDefense + individualValues.specialDefense + (effortValues.specialDefense / 4) * level) / 100 + 5;
+        modifiedStats.speed = (2 * stats.speed + individualValues.speed + (effortValues.speed / 4) * level) / 100 + 5;
 
         return modifiedStats;
     }
