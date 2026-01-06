@@ -341,9 +341,7 @@ GameObject:
   - component: {fileID: 232336256}
   - component: {fileID: 232336255}
   - component: {fileID: 232336259}
-  - component: {fileID: 232336258}
   - component: {fileID: 232336260}
-  - component: {fileID: 232336261}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -426,33 +424,6 @@ Transform:
   - {fileID: 470388749}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &232336258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232336254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172371fc1f0bd704eb1208478302dfe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BattleCameraController
-  pivot: {fileID: 470388749}
-  cam: {fileID: 232336257}
-  playerMon: {fileID: 1325240508}
-  enemyMon: {fileID: 1441577488}
-  followSmooth: 4
-  baseDistance: 8
-  baseHeight: 1
-  tiltDownAngle: 15
-  rotateSpeed: 20
-  idleRotateAmount: 5
-  idleRotateSpeed: 1
-  attackZoomDistance: 5
-  attackHeight: 2
-  attackTilt: 10
-  attackLerp: 6
 --- !u!114 &232336259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,33 +477,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 232336254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18aceb20181ba894fa2204ce191ce95b, type: 3}
+  m_Script: {fileID: 11500000, guid: 172371fc1f0bd704eb1208478302dfe0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CaptureCameraController
-  battleCam: {fileID: 232336258}
+  m_EditorClassIdentifier: Assembly-CSharp::BattleCameraController
+  pivot: {fileID: 470388749}
+  cam: {fileID: 232336257}
   playerMon: {fileID: 1325240508}
   enemyMon: {fileID: 1441577488}
-  cam: {fileID: 232336257}
-  behindPlayerDistance: 2
-  behindPlayerHeight: 1.2
-  ballFollowSpeed: 6
-  focusSpeed: 4
-  shakeIntensity: 0.05
-  shakeDuration: 1
---- !u!114 &232336261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232336254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7745f3e870fb09443a54fec9f6123365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CatchCameraTester
-  captureCam: {fileID: 232336260}
-  testBall: {fileID: 470388749}
+  followSmooth: 4
+  baseDistance: 8
+  baseHeight: 3
+  tiltDownAngle: 15
+  rotateSpeed: 20
+  idleRotateAmount: 10
+  idleRotateSpeed: 0.5
+  attackZoomDistance: 5
+  attackHeight: 2
+  attackTilt: 10
+  attackLerp: 6
 --- !u!4 &258903901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2f50fd83b857e8446b9299312d3a0de4, type: 3}
