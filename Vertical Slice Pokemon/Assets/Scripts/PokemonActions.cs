@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using static StatCalculator;
 using static DamageCalculations;
 
 public class PokemonActions : MonoBehaviour
 {
-    public PokemonData pokemonData = new PokemonData();
-    public PokemonData enemyData = new PokemonData();
+    public PokemonData pokemonData;
+    public PokemonData enemyData;
 
 
-    // 🟩 Health bar Image (UI → Image)
+    // Health bar Image (UI > Image)
     public Image enemyHealthBar;
 
     public static TurnOrder turnOrder;
@@ -19,12 +18,6 @@ public class PokemonActions : MonoBehaviour
 
     private void Start()
     {
-        // Calculate stats
-        pokemonData = CalculateStats(pokemonData);
-        enemyData = CalculateStats(enemyData);
-
-        // Initialize health bar
-        enemyHealthBar.fillAmount = 1f;
     }
 
     public void UseMove(int moveNumber)
