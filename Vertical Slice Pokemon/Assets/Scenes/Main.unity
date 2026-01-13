@@ -341,7 +341,6 @@ GameObject:
   - component: {fileID: 232336256}
   - component: {fileID: 232336255}
   - component: {fileID: 232336259}
-  - component: {fileID: 232336260}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -416,13 +415,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232336254}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.59191, y: 1, z: -14.875401}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 470388749}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1589848436}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &232336259
 MonoBehaviour:
@@ -431,7 +430,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232336254}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
@@ -468,33 +467,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &232336260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232336254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172371fc1f0bd704eb1208478302dfe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BattleCameraController
-  pivot: {fileID: 470388749}
-  cam: {fileID: 232336257}
-  playerMon: {fileID: 1325240508}
-  enemyMon: {fileID: 1441577488}
-  followSmooth: 4
-  baseDistance: 8
-  baseHeight: 3
-  tiltDownAngle: 15
-  rotateSpeed: 20
-  idleRotateAmount: 10
-  idleRotateSpeed: 0.5
-  attackZoomDistance: 5
-  attackHeight: 2
-  attackTilt: 10
-  attackLerp: 6
 --- !u!4 &258903901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2f50fd83b857e8446b9299312d3a0de4, type: 3}
@@ -2360,6 +2332,68 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a23ba908854d4f45abb6d16eb84c9e0, type: 3}
+--- !u!1 &1589848434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589848436}
+  - component: {fileID: 1589848435}
+  m_Layer: 0
+  m_Name: BattleCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1589848435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589848434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172371fc1f0bd704eb1208478302dfe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleCameraController
+  pivot: {fileID: 470388749}
+  cam: {fileID: 232336257}
+  playerMon: {fileID: 1325240508}
+  enemyMon: {fileID: 1441577488}
+  followSmooth: 6
+  baseDistance: 8
+  baseHeight: 3
+  baseTilt: 15
+  idleYawAmount: 10
+  idleYawSpeed: 0.5
+  rotationAmount: 0.3
+  attackRotationMultiplier: 0.5
+  attackDistance: 5
+  attackHeight: 2
+  attackTilt: 10
+  attackLerp: 6
+  attackDuration: 1.25
+--- !u!4 &1589848436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589848434}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.59191, y: 0, z: 4.8754005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 232336257}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1593835478
 GameObject:
   m_ObjectHideFlags: 0
@@ -5778,7 +5812,7 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 232336257}
+  - {fileID: 1589848436}
   - {fileID: 1696708540}
   - {fileID: 1910386429}
   - {fileID: 1140385377}
