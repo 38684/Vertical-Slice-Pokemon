@@ -1614,7 +1614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.1
+      value: 10.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0aa1ac64a77173e479a550775154379a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2342,6 +2342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1589848436}
   - component: {fileID: 1589848435}
+  - component: {fileID: 1589848437}
   m_Layer: 0
   m_Name: BattleCam
   m_TagString: Untagged
@@ -2361,23 +2362,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172371fc1f0bd704eb1208478302dfe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleCameraController
-  pivot: {fileID: 470388749}
-  cam: {fileID: 232336257}
-  playerMon: {fileID: 1325240508}
-  enemyMon: {fileID: 1441577488}
-  followSmooth: 6
-  baseDistance: 8
-  baseHeight: 3
-  baseTilt: 15
-  idleYawAmount: 10
-  idleYawSpeed: 0.5
-  rotationAmount: 0.3
-  attackRotationMultiplier: 0.5
-  attackDistance: 5
-  attackHeight: 2
-  attackTilt: 10
-  attackLerp: 6
-  attackDuration: 1.25
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  isAttackCamera: 0
+  shoulderOffset: {x: 2, y: 1.5, z: -3}
+  attackOffset: {x: 0, y: 2, z: -4}
+  followSpeed: 2
+  shakeIntensity: 0.1
 --- !u!4 &1589848436
 Transform:
   m_ObjectHideFlags: 0
@@ -2386,14 +2377,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1589848434}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.59191, y: 0, z: 4.8754005}
+  m_LocalRotation: {x: 0.14512897, y: -0.40524286, z: 0.06532913, w: 0.9002488}
+  m_LocalPosition: {x: -3.59, y: -3.37, z: 0.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 232336257}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 18.316, y: -48.469, z: 0}
+--- !u!114 &1589848437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589848434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172371fc1f0bd704eb1208478302dfe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleCamera
+  player: {fileID: 1325240508}
+  enemy: {fileID: 1441577488}
+  isAttackCamera: 0
+  shoulderOffset: {x: 2, y: 1.5, z: -3}
+  attackOffset: {x: 0, y: 2, z: -4}
+  followSpeed: 2
+  shakeIntensity: 0.4
 --- !u!1 &1593835478
 GameObject:
   m_ObjectHideFlags: 0
