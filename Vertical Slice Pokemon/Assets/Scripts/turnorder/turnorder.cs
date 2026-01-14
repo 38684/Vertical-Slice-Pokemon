@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum battleState { start, playerturn, enemyturn, won, lost }
+public enum battleState { start, playerturn, enemyturn, moveused, supereffective, won, lost }
 public class TurnOrder : MonoBehaviour
 {
     public GameObject playerPrefab;
