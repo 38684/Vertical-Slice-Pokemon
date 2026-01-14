@@ -2341,7 +2341,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1589848436}
-  - component: {fileID: 1589848435}
   - component: {fileID: 1589848437}
   m_Layer: 0
   m_Name: BattleCam
@@ -2350,25 +2349,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1589848435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589848434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172371fc1f0bd704eb1208478302dfe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BattleCameraController
-  player: {fileID: 0}
-  enemy: {fileID: 0}
-  isAttackCamera: 0
-  shoulderOffset: {x: 2, y: 1.5, z: -3}
-  attackOffset: {x: 0, y: 2, z: -4}
-  followSpeed: 2
-  shakeIntensity: 0.1
 --- !u!4 &1589848436
 Transform:
   m_ObjectHideFlags: 0
@@ -2400,7 +2380,7 @@ MonoBehaviour:
   player: {fileID: 1325240508}
   enemy: {fileID: 1441577488}
   isAttackCamera: 0
-  shoulderOffset: {x: 2, y: 1.5, z: -3}
+  shoulderOffset: {x: 2, y: 0.5, z: 3.5}
   attackOffset: {x: 0, y: 2, z: -4}
   followSpeed: 2
   shakeIntensity: 0.4
