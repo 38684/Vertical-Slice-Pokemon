@@ -30,12 +30,12 @@ public class PokemonData : MonoBehaviour
 
     private void GenerateIVs()
     {
-        individualValues.health = Random.Range(0, 32);
-        individualValues.attack = Random.Range(0, 32);
-        individualValues.defense = Random.Range(0, 32);
-        individualValues.specialAttack = Random.Range(0, 32);
-        individualValues.specialDefense = Random.Range(0, 32);
-        individualValues.speed = Random.Range(0, 32);
+        individualValues.health = 31;
+        individualValues.attack = 31;
+        individualValues.defense = 31;
+        individualValues.specialAttack = 31;
+        individualValues.specialDefense = 31;
+        individualValues.speed = 31;
     }
 
     private void GenerateEVs()
