@@ -29,10 +29,6 @@ public class ButtonSelection : MonoBehaviour
                     arrowIndex = 3;
                 }
                 arrow.GetComponent<RectTransform>().position = new Vector3(700, arrowCheckpoints[arrowIndex], 0);
-
-
-
-
             }
 
             if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
