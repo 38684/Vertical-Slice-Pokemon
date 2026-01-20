@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using static DamageCalculations;
 
@@ -28,11 +29,7 @@ public class PokemonActions : MonoBehaviour
         // Update health bar
         enemyHealthbar.SetDisplayHealth(enemyData.health);
 
-        foreach (GameObject go in UI) {
-            go.SetActive(false);
-        }
-        animator.SetTrigger("Attack");
-        battleCamera.attackOffset = new Vector3(0,0,0);
+        StartCoroutine(Attack());
 
         // Win / Lose
         if (enemyData.health <= 0)
@@ -48,5 +45,18 @@ public class PokemonActions : MonoBehaviour
             turnOrder.EnemyTurn();
         else
             turnOrder.PlayerTurn();
+    }
+
+    private IEnumerator Attack()
+    {
+
+        foreach (GameObject go in UI)
+        {
+            go.SetActive(false);
+        }
+        animator.SetTrigger("Attack");
+        battleCamera.isAttackCamera = false;
+        yield return new WaitForSeconds(3.5f);
+        battleCamera.isAttackCamera = true;
     }
 }
