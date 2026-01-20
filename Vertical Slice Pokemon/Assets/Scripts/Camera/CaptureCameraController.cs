@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CaptureCameraController : MonoBehaviour
 {
-    public BattleCameraController battleCam;
+    public BattleCamera battleCam;
     public Transform playerMon;
     public Transform enemyMon;
     public Transform cam;

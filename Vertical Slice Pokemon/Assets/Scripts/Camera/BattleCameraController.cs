@@ -1,116 +1,71 @@
 ﻿using UnityEngine;
 
-public class BattleCameraController : MonoBehaviour
+public class BattleCamera : MonoBehaviour
 {
-    [Header("References")]
-    public Transform pivot;
-    public Transform cam;
-    public Transform playerMon;
-    public Transform enemyMon;
+    public Transform player;
+    public Transform enemy;
+    public bool isAttackCamera;
 
-    [Header("General Settings")]
-    [Tooltip("How quickly the camera follows the midpoint")]
-    public float followSmooth = 6f;
+    [SerializeField] private Vector3 shoulderOffset = new Vector3(2f, 1.5f, -3f);
+    [SerializeField] private Vector3 attackOffset = new Vector3(0f, 2f, -4f);
+    [SerializeField] private float followSpeed = 2f;
+    [SerializeField] private float shakeIntensity = 0.1f;
 
-    public float baseDistance = 8f;
-    public float baseHeight = 3f;
+    private Vector3 _currentVelocity;
+    private float _timeOffset;
 
-    [Tooltip("Default downward tilt of the camera")]
-    public float baseTilt = 15f;
-
-    [Header("Idle Motion")]
-    [Tooltip("Max left/right rotation angle")]
-    public float idleYawAmount = 10f;
-
-    [Tooltip("Speed of idle rotation")]
-    public float idleYawSpeed = 0.5f;
-
-    [Header("Rotation Control")]
-    [Tooltip("Global rotation strength (0 = none)")]
-    public float rotationAmount = 1f;
-
-    [Tooltip("Rotation strength during attacks")]
-    public float attackRotationMultiplier = 0.5f;
-
-    [Header("Attack Camera")]
-    public float attackDistance = 5f;
-    public float attackHeight = 2f;
-    public float attackTilt = 10f;
-    public float attackLerp = 6f;
-    public float attackDuration = 1.25f;
-
-    bool inAttackMode;
-    float attackTimer;
-
-    float currentTilt;
-    float currentYaw;
-
-    Vector3 followVelocity;
-
-    void Start()
+    private void Awake()
     {
-        // Ensure inspector tilt changes are visible immediately
-        currentTilt = baseTilt;
+        _timeOffset = Random.Range(0f, 100f);
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
-        if (!playerMon || !enemyMon) return;
+        if (player == null) return;
 
-        // 1️⃣ Follow midpoint using SmoothDamp (no jitter, real smoothing)
-        Vector3 midpoint = (playerMon.position + enemyMon.position) * 0.5f;
-        transform.position = Vector3.SmoothDamp(
-            transform.position,
-            midpoint,
-            ref followVelocity,
-            1f / followSmooth
-        );
+        var targetPosition = GetTargetPosition();
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _currentVelocity, 1f / followSpeed);
 
-        // 2️⃣ Idle yaw with adjustable strength
-        float yawStrength = inAttackMode ? attackRotationMultiplier : 1f;
-        float idleYaw =
-            Mathf.Sin(Time.time * idleYawSpeed) *
-            idleYawAmount *
-            rotationAmount *
-            yawStrength;
+        var lookTarget = GetLookTarget();
+        var targetRotation = Quaternion.LookRotation(lookTarget - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * followSpeed);
+    }
 
-        // 3️⃣ Tilt & yaw blending
-        float targetTilt = inAttackMode ? attackTilt : baseTilt;
+    private Vector3 GetTargetPosition()
+    {
+        Vector3 basePosition;
 
-        currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * attackLerp);
-        currentYaw = Mathf.Lerp(currentYaw, idleYaw, Time.deltaTime * followSmooth);
-
-        pivot.localRotation = Quaternion.Euler(currentTilt, currentYaw, 0f);
-
-        // 4️⃣ Camera offset
-        float targetDistance = inAttackMode ? attackDistance : baseDistance;
-        float targetHeight = inAttackMode ? attackHeight : baseHeight;
-
-        Vector3 targetCamPos = new Vector3(0f, targetHeight, -targetDistance);
-        cam.localPosition = Vector3.Lerp(
-            cam.localPosition,
-            targetCamPos,
-            Time.deltaTime * attackLerp
-        );
-
-        // 5️⃣ Attack timer
-        if (inAttackMode)
+        if (isAttackCamera)
         {
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= attackDuration)
-                EndAttackCamera();
+            var midpoint = (player.position + enemy.position) * 0.5f;
+            basePosition = midpoint + attackOffset;
         }
+        else
+        {
+            basePosition = player.position + player.TransformDirection(shoulderOffset);
+        }
+
+        var shake = GetShakeOffset();
+        return basePosition + shake;
     }
 
-    // Call when a move starts
-    public void TriggerAttackCamera()
+    private Vector3 GetLookTarget()
     {
-        inAttackMode = true;
-        attackTimer = 0f;
+        if (isAttackCamera && enemy != null)
+        {
+            return (player.position + enemy.position) * 0.5f;
+        }
+
+        return player.position + player.forward * 5f;
     }
 
-    void EndAttackCamera()
+    private Vector3 GetShakeOffset()
     {
-        inAttackMode = false;
+        var time = Time.time + _timeOffset;
+        var x = Mathf.PerlinNoise(time, 0f) * 2f - 1f;
+        var y = Mathf.PerlinNoise(0f, time) * 2f - 1f;
+        var z = Mathf.PerlinNoise(time * 0.5f, time * 0.7f) * 2f - 1f;
+
+        return new Vector3(x, y, z) * shakeIntensity;
     }
 }
