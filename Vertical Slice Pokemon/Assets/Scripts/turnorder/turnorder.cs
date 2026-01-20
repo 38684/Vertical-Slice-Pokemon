@@ -1,44 +1,47 @@
-
-using System;
+using Unity.VisualScripting;
 using UnityEngine;
-using BattleState = DataStructures.BattleState;
+using UnityEngine.UI;
 
+public enum battleState { start, playerturn, enemyturn, moveused, supereffective, won, lost }
 public class TurnOrder : MonoBehaviour
 {
-    public static event Action <BattleState> OnTurnOrder;
-    public BattleState state;
+    public GameObject playerPrefab;
+    public GameObject enemyPrefab;
+
+
+
+    public battleState state;
+
 
     private void Start()
     {
-        state = BattleState.Start;
-    }
-
-    public void Menu()
-    {
-        state = BattleState.Menu;
+        state = battleState.start;
+        Debug.Log("I WANNA BE, THE VERY BEST :>");
     }
 
 
     public void PlayerTurn()
     {
-        state = BattleState.PlayerTurn;
-        OnTurnOrder.Invoke(state);
+        state = battleState.playerturn;
+        Debug.Log("GO MY SLAVE :>");
     }
 
     public void EnemyTurn()
     {
-        state = BattleState.EnemyTurn;
-        OnTurnOrder.Invoke(state);
+        state = battleState.enemyturn;
+        Debug.Log("NOOOOO MY ENEMY :>");
     }
 
     public void Won()
     {
-        state = BattleState.Won;
+        state = battleState.won;
+        Debug.Log("you won :>");
     }
 
     public void Lost()
     {
-        state = BattleState.Lost;
+        state = battleState.lost;
+        Debug.Log("you lost :>");
     }
 
 
