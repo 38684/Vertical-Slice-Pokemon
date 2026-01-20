@@ -6,39 +6,25 @@ public class PokemonActions : MonoBehaviour
 {
     public PokemonData pokemonData;
     public PokemonData enemyData;
+    [SerializeField] Healthbar enemyHealthbar;
 
-
-    // Health bar Image (UI > Image)
-    public Image enemyHealthBar;
-
-    public static TurnOrder turnOrder;
+    public TurnOrder turnOrder;
     public Moveset moves;
 
     private int damage;
 
-    private void Start()
-    {
-    }
-
     public void UseMove(int moveNumber)
     {
         // Calculate damage
-        damage = CalculateDamage(pokemonData, moves.moves[moveNumber]);
+        damage = CalculateDamage(pokemonData, enemyData, moves.moves[moveNumber]);
 
         // Apply damage
         enemyData.health -= damage;
         enemyData.health = Mathf.Clamp(enemyData.health, 0, enemyData.health);
 
         // Update health bar
-        enemyHealthBar.fillAmount =
-            (float)enemyData.health / enemyData.health;
-
-        // Turn order logic
-        if (CompareTag("Player"))
-            turnOrder.EnemyTurn();
-        else
-            turnOrder.PlayerTurn();
-
+        enemyHealthbar.SetDisplayHealth(enemyData.health);
+        
         // Win / Lose
         if (enemyData.health <= 0)
         {
@@ -47,5 +33,11 @@ public class PokemonActions : MonoBehaviour
             else
                 turnOrder.Lost();
         }
+
+        // Turn order logic
+        if (CompareTag("Player"))
+            turnOrder.EnemyTurn();
+        else
+            turnOrder.PlayerTurn();
     }
 }

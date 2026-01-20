@@ -40,11 +40,11 @@ public class DataStructures
         public int powerPoint;
         public int power;
         public int accuracy;
-        public MoveCatagory category;
+        public MoveCategory category;
         public Types type;
     }
 
-    public enum MoveCatagory
+    public enum MoveCategory
     {
         Physical,
         Special,
