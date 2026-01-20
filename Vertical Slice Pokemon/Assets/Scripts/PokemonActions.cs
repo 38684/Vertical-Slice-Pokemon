@@ -6,6 +6,7 @@ public class PokemonActions : MonoBehaviour
 {
     public PokemonData pokemonData;
     public PokemonData enemyData;
+    [SerializeField] Animator animator;
     [SerializeField] Healthbar enemyHealthbar;
 
     public TurnOrder turnOrder;
@@ -24,7 +25,9 @@ public class PokemonActions : MonoBehaviour
 
         // Update health bar
         enemyHealthbar.SetDisplayHealth(enemyData.health);
-        
+
+        animator.SetTrigger("Attack");
+
         // Win / Lose
         if (enemyData.health <= 0)
         {
