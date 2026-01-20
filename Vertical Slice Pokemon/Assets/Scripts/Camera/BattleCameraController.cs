@@ -1,58 +1,99 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BattleCameraController : MonoBehaviour
 {
     [Header("References")]
-    public Transform pivot;       // The pivot the camera rotates around
-    public Transform cam;         // The actual Main Camera
-    public Transform playerMon;   // Player Pok�mon
-    public Transform enemyMon;    // Enemy Pok�mon
+    public Transform pivot;
+    public Transform cam;
+    public Transform playerMon;
+    public Transform enemyMon;
 
-    [Header("General Camera Settings")]
-    public float followSmooth = 4f;
+    [Header("General Settings")]
+    [Tooltip("How quickly the camera follows the midpoint")]
+    public float followSmooth = 6f;
+
     public float baseDistance = 8f;
     public float baseHeight = 3f;
-    public float tiltDownAngle = 15f;
 
-    [Header("Dynamic Motion")]
-    public float rotateSpeed = 20f;
-    public float idleRotateAmount = 10f;  // slow idle movement
-    public float idleRotateSpeed = 0.5f;
+    [Tooltip("Default downward tilt of the camera")]
+    public float baseTilt = 15f;
 
-    [Header("Attack Camera Settings")]
-    public float attackZoomDistance = 5f;
+    [Header("Idle Motion")]
+    [Tooltip("Max left/right rotation angle")]
+    public float idleYawAmount = 10f;
+
+    [Tooltip("Speed of idle rotation")]
+    public float idleYawSpeed = 0.5f;
+
+    [Header("Rotation Control")]
+    [Tooltip("Global rotation strength (0 = none)")]
+    public float rotationAmount = 1f;
+
+    [Tooltip("Rotation strength during attacks")]
+    public float attackRotationMultiplier = 0.5f;
+
+    [Header("Attack Camera")]
+    public float attackDistance = 5f;
     public float attackHeight = 2f;
     public float attackTilt = 10f;
     public float attackLerp = 6f;
+    public float attackDuration = 1.25f;
 
-    bool inAttackMode = false;
-    float attackTimer = 0f;
-    float attackDuration = 1.25f;
+    bool inAttackMode;
+    float attackTimer;
+
+    float currentTilt;
+    float currentYaw;
+
+    Vector3 followVelocity;
+
+    void Start()
+    {
+        // Ensure inspector tilt changes are visible immediately
+        currentTilt = baseTilt;
+    }
 
     void LateUpdate()
     {
-        if (!enabled) return;
+        if (!playerMon || !enemyMon) return;
 
-        if (playerMon == null || enemyMon == null) return;
-
-        // 1. Follow midpoint between both Pok�mon
+        // 1️⃣ Follow midpoint using SmoothDamp (no jitter, real smoothing)
         Vector3 midpoint = (playerMon.position + enemyMon.position) * 0.5f;
-        transform.position = Vector3.Lerp(transform.position, midpoint, Time.deltaTime * followSmooth);
+        transform.position = Vector3.SmoothDamp(
+            transform.position,
+            midpoint,
+            ref followVelocity,
+            1f / followSmooth
+        );
 
-        // 2. Idle rotation (Sword/Shield floating camera feel)
-        float idleRotation = Mathf.Sin(Time.time * idleRotateSpeed) * idleRotateAmount;
-        pivot.localRotation = Quaternion.Euler(tiltDownAngle, idleRotation, 0f);
+        // 2️⃣ Idle yaw with adjustable strength
+        float yawStrength = inAttackMode ? attackRotationMultiplier : 1f;
+        float idleYaw =
+            Mathf.Sin(Time.time * idleYawSpeed) *
+            idleYawAmount *
+            rotationAmount *
+            yawStrength;
 
-        // 3. Camera offset configuration
-        float targetDistance = inAttackMode ? attackZoomDistance : baseDistance;
+        // 3️⃣ Tilt & yaw blending
+        float targetTilt = inAttackMode ? attackTilt : baseTilt;
+
+        currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * attackLerp);
+        currentYaw = Mathf.Lerp(currentYaw, idleYaw, Time.deltaTime * followSmooth);
+
+        pivot.localRotation = Quaternion.Euler(currentTilt, currentYaw, 0f);
+
+        // 4️⃣ Camera offset
+        float targetDistance = inAttackMode ? attackDistance : baseDistance;
         float targetHeight = inAttackMode ? attackHeight : baseHeight;
 
-        Vector3 desiredLocalPos = new Vector3(0, targetHeight, -targetDistance);
-        float lerpSpeed = inAttackMode ? attackLerp : followSmooth;
+        Vector3 targetCamPos = new Vector3(0f, targetHeight, -targetDistance);
+        cam.localPosition = Vector3.Lerp(
+            cam.localPosition,
+            targetCamPos,
+            Time.deltaTime * attackLerp
+        );
 
-        cam.localPosition = Vector3.Lerp(cam.localPosition, desiredLocalPos, Time.deltaTime * lerpSpeed);
-
-        // 4. Handle attack transition timing
+        // 5️⃣ Attack timer
         if (inAttackMode)
         {
             attackTimer += Time.deltaTime;
@@ -61,18 +102,15 @@ public class BattleCameraController : MonoBehaviour
         }
     }
 
-    // Call this when a move animation begins
+    // Call when a move starts
     public void TriggerAttackCamera()
     {
         inAttackMode = true;
         attackTimer = 0f;
-        pivot.localRotation = Quaternion.Euler(attackTilt, pivot.localEulerAngles.y, 0);
     }
 
-    // Automatically resets after attack
     void EndAttackCamera()
     {
         inAttackMode = false;
-
     }
 }
