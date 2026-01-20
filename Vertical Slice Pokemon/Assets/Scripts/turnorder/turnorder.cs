@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum battleState { start, playerturn, enemyturn, moveused, supereffective, won, lost }
@@ -37,5 +38,6 @@ public class TurnOrder : MonoBehaviour
     public void Lost()
     {
         state = battleState.lost;
+        SceneManager.LoadScene("WinScreen");
     }
 }

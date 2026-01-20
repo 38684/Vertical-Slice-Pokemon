@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,8 +24,18 @@ public class Healthbar : MonoBehaviour
 
     public void SetDisplayHealth(float health)
     {
-        slider.value = health;
+        StartCoroutine(DrainHealth(health));
+    }
 
-        fill.color = gradient.Evaluate(slider.normalizedValue);
+    IEnumerator DrainHealth(float health)
+    {
+        while (slider.value != health) 
+        {
+            slider.value = Mathf.MoveTowards(slider.value, health, 0.01f);
+            fill.color = gradient.Evaluate(slider.normalizedValue);
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield break;
     }
 }

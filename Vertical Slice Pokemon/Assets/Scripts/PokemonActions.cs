@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using static DamageCalculations;
 
 public class PokemonActions : MonoBehaviour
@@ -9,7 +8,8 @@ public class PokemonActions : MonoBehaviour
     public PokemonData enemyData;
     [SerializeField] Animator animator;
     [SerializeField] Healthbar enemyHealthbar;
-    [SerializeField] GameObject[] UI;
+    [SerializeField] GameObject[] ui;
+    [SerializeField] GameObject particles;
     [SerializeField] BattleCamera battleCamera;
 
     public TurnOrder turnOrder;
@@ -30,6 +30,22 @@ public class PokemonActions : MonoBehaviour
         enemyHealthbar.SetDisplayHealth(enemyData.health);
 
         StartCoroutine(Attack());
+    }
+
+    private IEnumerator Attack()
+    {
+        foreach (GameObject go in ui)
+        {
+            go.SetActive(false);
+        }
+        animator.SetTrigger("Attack");
+        battleCamera.isAttackCamera = false;
+        yield return new WaitForSeconds(1f);
+        particles.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        particles.SetActive(false);
+        battleCamera.isAttackCamera = true;
+        yield return new WaitForSeconds(2f);
 
         // Win / Lose
         if (enemyData.health <= 0)
@@ -45,18 +61,5 @@ public class PokemonActions : MonoBehaviour
             turnOrder.EnemyTurn();
         else
             turnOrder.PlayerTurn();
-    }
-
-    private IEnumerator Attack()
-    {
-
-        foreach (GameObject go in UI)
-        {
-            go.SetActive(false);
-        }
-        animator.SetTrigger("Attack");
-        battleCamera.isAttackCamera = false;
-        yield return new WaitForSeconds(3.5f);
-        battleCamera.isAttackCamera = true;
     }
 }
