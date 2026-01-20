@@ -29785,12 +29785,16 @@ PrefabInstance:
       value: GoopSpray
       objectReference: {fileID: 0}
     - target: {fileID: 4396671266920006, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.8072
+      objectReference: {fileID: 0}
+    - target: {fileID: 4396671266920006, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.108
       objectReference: {fileID: 0}
     - target: {fileID: 4396671266920006, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.0096152
+      value: -0.96
       objectReference: {fileID: 0}
     - target: {fileID: 4396671266920006, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
       propertyPath: m_LocalPosition.z
