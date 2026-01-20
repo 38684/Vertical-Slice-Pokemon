@@ -7,7 +7,7 @@ public class BattleCamera : MonoBehaviour
     public bool isAttackCamera;
 
     [SerializeField] private Vector3 shoulderOffset = new Vector3(2f, 1.5f, -3f);
-    [SerializeField] private Vector3 attackOffset = new Vector3(0f, 2f, -4f);
+    public Vector3 attackOffset = new Vector3(0f, 2f, -4f);
     [SerializeField] private float followSpeed = 2f;
     [SerializeField] private float shakeIntensity = 0.1f;
 

@@ -8,6 +8,8 @@ public class PokemonActions : MonoBehaviour
     public PokemonData enemyData;
     [SerializeField] Animator animator;
     [SerializeField] Healthbar enemyHealthbar;
+    [SerializeField] GameObject[] UI;
+    [SerializeField] BattleCamera battleCamera;
 
     public TurnOrder turnOrder;
     public Moveset moves;
@@ -26,7 +28,11 @@ public class PokemonActions : MonoBehaviour
         // Update health bar
         enemyHealthbar.SetDisplayHealth(enemyData.health);
 
+        foreach (GameObject go in UI) {
+            go.SetActive(false);
+        }
         animator.SetTrigger("Attack");
+        battleCamera.attackOffset = new Vector3(0,0,0);
 
         // Win / Lose
         if (enemyData.health <= 0)
