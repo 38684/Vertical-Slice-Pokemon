@@ -10,6 +10,7 @@ public class PokemonActions : MonoBehaviour
     [SerializeField] Healthbar enemyHealthbar;
     [SerializeField] GameObject[] ui;
     [SerializeField] GameObject particles;
+    [SerializeField] GameObject hitParticles;
     [SerializeField] BattleCamera battleCamera;
 
     public TurnOrder turnOrder;
@@ -25,9 +26,6 @@ public class PokemonActions : MonoBehaviour
         // Apply damage
         enemyData.health -= damage;
         enemyData.health = Mathf.Clamp(enemyData.health, 0, enemyData.health);
-
-        // Update health bar
-        enemyHealthbar.SetDisplayHealth(enemyData.health);
 
         StartCoroutine(Attack());
     }
@@ -45,7 +43,16 @@ public class PokemonActions : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         particles.SetActive(false);
         battleCamera.isAttackCamera = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+
+        hitParticles.SetActive(true);
+
+        // Update health bar
+        enemyHealthbar.SetDisplayHealth(enemyData.health);
+
+        yield return new WaitForSeconds(2.5f);
+
+        hitParticles.SetActive(false);
 
         // Win / Lose
         if (enemyData.health <= 0)
