@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class ButtonSelection : MonoBehaviour
 {
@@ -15,12 +16,27 @@ public class ButtonSelection : MonoBehaviour
     public GameObject firstset;
     public GameObject secondset;
 
+    private void Start()
+    {
+        arrowIndex = 3;
+        arrow.GetComponent<RectTransform>().position = new Vector3(1427, arrowCheckpoints[arrowIndex], 0);
+    }
+
+    public void combat()
+    {
+        arrowIndexsecond = 3;
+        secondarrow.GetComponent<RectTransform>().position = new Vector3(1168, arrowCheckpointssecond[arrowIndexsecond], 0);
+    }
+
     private void Update()
     {
+        
+
+
         if (firstset.activeSelf)
         {
 
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) 
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
 
                 arrowIndex++;
@@ -28,7 +44,11 @@ public class ButtonSelection : MonoBehaviour
                 {
                     arrowIndex = 3;
                 }
-                arrow.GetComponent<RectTransform>().position = new Vector3(700, arrowCheckpoints[arrowIndex], 0);
+                arrow.GetComponent<RectTransform>().position = new Vector3(1427, arrowCheckpoints[arrowIndex], 0);
+
+
+
+
             }
 
             if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
@@ -39,7 +59,7 @@ public class ButtonSelection : MonoBehaviour
                 {
                     arrowIndex = 0;
                 }
-                arrow.GetComponent<RectTransform>().position = new Vector3(700, arrowCheckpoints[arrowIndex], 0);
+                arrow.GetComponent<RectTransform>().position = new Vector3(1427, arrowCheckpoints[arrowIndex], 0);
 
 
 
@@ -51,9 +71,14 @@ public class ButtonSelection : MonoBehaviour
 
 
         if (secondset.activeSelf)
-        {
+        {   
+
+           
+
+
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
+
                 arrowIndexsecond++;
                 if (arrowIndexsecond > 3)
                 {
@@ -61,7 +86,7 @@ public class ButtonSelection : MonoBehaviour
                 }
 
                 secondarrow.GetComponent<RectTransform>().position =
-                    new Vector3(580, arrowCheckpointssecond[arrowIndexsecond], 0);
+                    new Vector3(1168, arrowCheckpointssecond[arrowIndexsecond], 0);
 
                 Debug.Log("indexinputworking");
             }
@@ -75,7 +100,7 @@ public class ButtonSelection : MonoBehaviour
                 }
 
                 secondarrow.GetComponent<RectTransform>().position =
-                    new Vector3(580, arrowCheckpointssecond[arrowIndexsecond], 0);
+                    new Vector3(1168, arrowCheckpointssecond[arrowIndexsecond], 0);
 
                 Debug.Log("indexinputworking");
             }
@@ -83,5 +108,3 @@ public class ButtonSelection : MonoBehaviour
 
     }
 }
-
-
