@@ -12,6 +12,7 @@ public class PokemonActions : MonoBehaviour
     [SerializeField] GameObject particles;
     [SerializeField] GameObject hitParticles;
     [SerializeField] BattleCamera battleCamera;
+    [SerializeField] AudioSource hitSfx;
 
     public TurnOrder turnOrder;
     public Moveset moves;
@@ -46,6 +47,7 @@ public class PokemonActions : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         hitParticles.SetActive(true);
+        hitSfx.Play();
 
         // Update health bar
         enemyHealthbar.SetDisplayHealth(enemyData.health);
